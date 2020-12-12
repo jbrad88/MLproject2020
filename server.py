@@ -38,7 +38,7 @@ def index():
 
 @app.route("/hello")
 def answer():
-    return {"value": predict(16, p)}
+    return {"value": predict(15, p)}
 
 
 # References
