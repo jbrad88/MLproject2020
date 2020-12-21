@@ -1,9 +1,15 @@
 import numpy as np
 from flask import Flask, request, jsonify, render_template
 import pickle
+import joblib
+import model
+#from sklearn.externals import joblib 
 
 app = Flask(__name__)
-model = pickle.load(open('modelz.pkl', 'rb'))
+#model = pickle.load(open('modelz.pkl', 'rb'))
+model = joblib.load(open('finalized_model2.sav', 'rb'))
+
+p = [model.intercept_, model.coef_[0]]
 
 @app.route('/')
 def home():
@@ -13,10 +19,11 @@ def home():
 def predict():
 
     int_features = [int(x) for x in request.form.values()]
-    final_features = [np.array(int_features)]
-    prediction = model.predict(final_features)
+    #final_features = [np.array(int_features)]
+    prediction = model.fit(int_features, p)
 
     output = round(prediction[0], 2)
+
 
     return render_template('index.html', prediction_text='Sales should be $ {}'.format(output))
 
