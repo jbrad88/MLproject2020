@@ -28,7 +28,7 @@ def prediction_model(data,ws_input):
     model = lin.LinearRegression()
     model.fit(x, y)
 
-    r = model.score(x, y)
+    #r = model.score(x, y)
     p = [model.intercept_, model.coef_[0]]
 
     def f(x, p):
@@ -39,11 +39,20 @@ def prediction_model(data,ws_input):
 
     return (predict(ws_input, p))
 
-#def user_input(ws_input):
-#    ws_input = ws_input
-#    return prediction_model(df, ws_input)
+def user_input(ws_input):
+    ws_input = ws_input
+    return float(prediction_model(df, ws_input))
 
-print(prediction_model(15,0))
+regressor = LinearRegression()
+
+regressor.fit(X, y)
+
+pickle.dump(regressor, open('model.pkl','wb'))
+
+model = pickle.load(open('model.pkl','rb'))
+print(model.predict([[4, 300, 500]]))
+
+#print(prediction_model(15,0))
 
 #windspeed = float(input("Enter value:"))
 #print(predict(windspeed, p))

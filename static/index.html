@@ -15,18 +15,17 @@
   <body>
     <h1>Hello and welcome!</h1>
 
-    <form>
-        <div class="form">
-            <form action="" method="post"></form>
-            <label for="ws_input">Input wind speed</label>
-            <input type="number" class="form-control" id="ws_input" placeholder="Enter wind speed">
-    </form> 
+        <!-- Main Input For Receiving Query to our ML -->
+        <form action="{{ url_for('predict')}}"method="post">
+          <input type="text" name="windpower" placeholder="windpower" required="required" />
 
-    <button type="button" class="btn btn-success">Calculate</button>
-    <br>
-    <br>
-
-    <input class="form-control" type="text" placeholder="Predicted power" readonly>
+    <button type="submit" class="btn btn-primary btn-block btn-large">Predict sales in third month</button>
+</form>
+    
+<br>
+<br>
+{{ prediction_text }}
+ 
 
     <!-- Optional JavaScript; choose one of the two! -->
 
