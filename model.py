@@ -6,6 +6,7 @@ from sklearn.linear_model import LinearRegression
 import pickle
 import requests
 import json
+import matplotlib.pyplot as plt 
 
 # Load dataset. Note: We have cleansed the data set to take into account days on which the turbines were inactive.
 # This has been determined to be days on which wind speeds were greater than 5mph, however, no power
